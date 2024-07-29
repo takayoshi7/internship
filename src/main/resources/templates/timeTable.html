@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>時間割表</title>
+	</head>
+	<body>
+		<div>
+			<h2><span th:text="${userName}"></span>さんの時間割表</h2>
+		</div>
+		<div>
+			<form th:action="@{/timeTable}">
+				<div>
+					<p>授業ID：
+						<input type="text" name="classId" id="classId" />
+					</p>
+				</div>
+				<div>
+					<input type="hidden" name="hiddenStudentID" th:value="${userId}" />
+					<input type="submit" name="delete" id="delete" value="削除" />
+					<input type="submit" name="back" id="back" value="戻る" />
+				</div>
+			</form>
+		</div>
+		<div>
+			<!--時間割表-->
+			<table border="1">
+				<thead>
+					<tr>
+						<th>授業ID</th>
+						<th>教員名</th>
+						<th>授業名</th>
+						<th>時間</th>
+					</tr>
+				</thead>
+				<tbody>
+					<!--dataを繰り返し処理でテーブルに表示-->
+					<tr th:each="data : ${timeTable}" th:object="${data}">
+						<td th:text="*{CLASS_ID}"></td>
+						<td th:text="*{TEACHER_NAME}"></td>
+						<td th:text="*{CLASS_NAME}"></td>
+						<td th:text="*{CLASS_TIME}"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</body>
+</html>
