@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.internship.model.CourseRegist;
+import com.example.internship.entity.CourseRegist;
 import com.example.internship.repository.CourseRegistRepository;
 
 @Service
@@ -39,7 +39,7 @@ public class CourseRegistService {
      * @param userId ユーザーID
      * @param classId 授業ID
      */
-    // public void addClass(Integer userId, Integer classId) {
-    //     courseRegistRepository.addClass(userId, classId);
-    // }
+    public void insertClass(Integer userId, Integer classId) {
+        courseRegistRepository.insertClass(userId, classId);
+    }
 }

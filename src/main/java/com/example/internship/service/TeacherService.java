@@ -5,7 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.internship.model.Teacher;
+import com.example.internship.entity.Teacher;
 import com.example.internship.repository.TeacherRepository;
 
 @Service

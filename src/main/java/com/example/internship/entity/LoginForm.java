@@ -1,4 +1,4 @@
-package com.example.internship.model;
+package com.example.internship.entity;
 
 import java.io.Serializable;
 

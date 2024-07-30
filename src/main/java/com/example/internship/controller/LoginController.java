@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import com.example.internship.model.LoginForm;
-import com.example.internship.model.Student;
-import com.example.internship.model.Teacher;
+import com.example.internship.entity.LoginForm;
+import com.example.internship.entity.Student;
+import com.example.internship.entity.Teacher;
 import com.example.internship.service.StudentService;
 import com.example.internship.service.TeacherService;
 
@@ -31,7 +31,7 @@ public class LoginController {
 	@Autowired
 	private TeacherService teacherService;
 	@Autowired
-	LoginForm loginForm;
+	private LoginForm loginForm;
 
 	// ログイン認証
 	@PostMapping("/menu")

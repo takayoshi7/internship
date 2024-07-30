@@ -8,7 +8,7 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.internship.model.Teacher;
+import com.example.internship.entity.Teacher;
 
 @Repository
 public interface TeacherRepository extends JpaRepository<Teacher, Integer> {

@@ -9,7 +9,7 @@
 			<h2>履修登録</h2>
 		</div>
 		<div>
-			<form th:action="@{/aaa}" method="post">
+			<form th:action="@{/insert}" method="post">
 				<div>
 					<p>授業ID：
 						<input type="text" name="addClassID" id="addClassID" />
@@ -36,7 +36,7 @@
 				</thead>
 				<tbody>
 					<!--dataを繰り返し処理でテーブルに表示-->
-					<tr th:each="data : ${notClass}" th:object="${data}">
+					<tr th:each="data : ${notClassData}" th:object="${data}">
 						<td th:text="*{CLASS_ID}"></td>
 						<td th:text="*{TEACHER_NAME}"></td>
 						<td th:text="*{CLASS_NAME}"></td>

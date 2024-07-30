@@ -7,16 +7,16 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 
-import com.example.internship.model.LoginForm;
-import com.example.internship.model.TimeTable;
+import com.example.internship.entity.LoginForm;
+import com.example.internship.entity.TimeTable;
 import com.example.internship.service.TimeTableService;
 
 @Controller
 public class MainController {
 	@Autowired
-	private TimeTableService timeTableService;
-	@Autowired
 	private LoginForm loginForm;
+	@Autowired
+	private TimeTableService timeTableService;
 
 	// ログイン画面表示
 	@GetMapping("/login")
@@ -46,14 +46,11 @@ public class MainController {
 	// 履修登録画面
 	@GetMapping("/courseRegist")
 	public String dispCourseRegist(Model model) {
-		// ユーザー名取得
-		//model.addAttribute("userName", loginForm.getName());
-
-		// DBから時間割表データ取得
-		//List<TimeTable> timeTable = timeTableService.getTimeTable(loginForm.getUserId());
+		// DBから未登録の授業データ取得
+		List<TimeTable> notClassData = timeTableService.getNotClass(loginForm.getUserId());
 
 		// 時間割表データセット
-		//model.addAttribute("timeTable", timeTable);
+		model.addAttribute("notClassData", notClassData);
 
 		return "demo/courseRegist";
 	}
@@ -72,10 +69,6 @@ public class MainController {
 
 		return "demo/timeTable";
 	}
-
-
-
-
 
 	// メニュー画面に戻る
 	@GetMapping("back")
@@ -97,5 +90,4 @@ public class MainController {
 
 		return "demo/login";
 	}
-
 }

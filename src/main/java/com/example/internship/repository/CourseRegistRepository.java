@@ -9,9 +9,9 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
-import com.example.internship.model.CourseRegist;
-import com.example.internship.model.Student;
-import com.example.internship.model.TimeTable;
+import com.example.internship.entity.CourseRegist;
+import com.example.internship.entity.Student;
+import com.example.internship.entity.TimeTable;
 
 import jakarta.transaction.Transactional;
 // @QueryでSELECT以外の直接SQL文を実行する場合は@Transactionalと@Modifyingが必須
@@ -27,10 +27,9 @@ public interface CourseRegistRepository extends JpaRepository<CourseRegist, Inte
 		void deleteClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
 
 
-		// @Modifying
-		// @Query(value = "INSERT INTO COURSE_REGIST(STUDENT_ID, CLASS_ID)" +
-		// 		"VALUES(:studentID, :classID) ", nativeQuery = true)
-		// 	void addClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
-	
-
+	// 自分が未登録の授業を追加する
+	@Modifying
+	@Query(value = "INSERT INTO COURSE_REGIST(STUDENT_ID, CLASS_ID)" +
+			"VALUES(:studentID, :classID) ", nativeQuery = true)
+		void insertClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
 }

@@ -1,5 +1,5 @@
 // DBから取得したデータを格納するエンティティクラス
-package com.example.internship.model;
+package com.example.internship.entity;
 
 import java.io.Serializable;
 
