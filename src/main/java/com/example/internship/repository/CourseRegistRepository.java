@@ -17,4 +17,13 @@ public interface CourseRegistRepository extends JpaRepository<CourseRegist, Inte
 			"WHERE STUDENT_ID = :studentID " +
 			"AND CLASS_ID = :classID ", nativeQuery = true)
 		void deleteClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
+
+
+
+		// @Modifying
+		// @Query(value = "INSERT INTO COURSE_REGIST(STUDENT_ID, CLASS_ID)" +
+		// 		"VALUES(:studentID, :classID) ", nativeQuery = true)
+		// 	void addClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
+	
+
 }

@@ -13,6 +13,7 @@
 			<p>教員</p>
 			<!--コントローラーのMappingのValueがteacherのイベントにpost送信-->
 			<form th:action="@{/menu}" method="post">
+				<p><span th:text="${loginFormData.userId}"></span></p>
 				<p>
 					<input type="hidden" name="hiddenTeacherID" th:value="${userId}" />
 					<input type="submit" name="class" value="時間割表" th:disabled="*{selectJob != 'Teacher'}" />

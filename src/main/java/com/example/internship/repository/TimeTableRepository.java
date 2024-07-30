@@ -4,6 +4,7 @@ package com.example.internship.repository;
 import java.util.List;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
@@ -27,7 +28,7 @@ public interface TimeTableRepository extends JpaRepository<TimeTable, Integer> {
 			"ORDER BY CLASS.CLASS_ID ASC ", nativeQuery = true)
 		List<TimeTable> getNotClass(@Param("studentID") Integer studentID);
 
-
+	@Modifying
 	@Query(value = "DELETE FROM COURSE_REGIST " +
 		"WHERE STUDENT_ID = :studentID " +
 		"AND CLASS_ID = :classID ", nativeQuery = true)

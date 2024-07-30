@@ -14,42 +14,46 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.internship.model.LoginForm;
 import com.example.internship.model.Student;
+import com.example.internship.model.Syain;
 import com.example.internship.model.Teacher;
 import com.example.internship.service.StudentService;
 import com.example.internship.service.TeacherService;
-
 
 @Controller // このクラスがコントローラークラスだと指定
 public class LoginController {
 	@Autowired
 	private StudentService studentService;
-	@Autowired   
+	@Autowired
 	private TeacherService teacherService;
+	@Autowired
+	LoginForm loginFormData;
 
-	@GetMapping("/login")    
+
+	@GetMapping("/login")
 	public String login() {
 		return "login"; // Thymeleafを使用する場合、htmlファイルはtemplates直下に置く
 	}
 
 	// フォームのth:actionでmenuかつsubmitのnameがloginでpost送信したときの処理
-	@RequestMapping(value  = "menu", params = "login", method = RequestMethod.POST)
+	@RequestMapping(value = "menu", params = "login", method = RequestMethod.POST)
 	// login画面からフォーム送信されたとき、loginFormで値を取得
-	public String login(@Valid LoginForm loginForm, BindingResult bindingResult, Model model) {
+	public String login(@Valid LoginForm loginForm, BindingResult bindingResult, Model model, RedirectAttributes redirectAttributes) {
 		// 入力チェック
 		if (bindingResult.hasErrors()) {
 			if (bindingResult.hasFieldErrors("userId")) {
 				// ユーザーIDにエラーがあればエラーメッセージセット
-				model.addAttribute("idError", bindingResult.getFieldError("userId").getDefaultMessage());
+				redirectAttributes.addFlashAttribute("idError", bindingResult.getFieldError("userId").getDefaultMessage());
 			}
-			
+
 			if (bindingResult.hasFieldErrors("password")) {
 				// パスワードにエラーがあれば
-				model.addAttribute("passError", bindingResult.getFieldError("password").getDefaultMessage());
+				redirectAttributes.addFlashAttribute("passError", bindingResult.getFieldError("password").getDefaultMessage());
 			}
-			return "login"; // login.htmlに戻る
+			return "redirect:/login";
 		}
 
 		// 入力されたパスワードのハッシュ化
@@ -69,8 +73,8 @@ public class LoginController {
 			List<Teacher> loginUser = teacherService.loginUser(loginForm.getUserId());
 
 			if (loginUser.isEmpty()) {
-				model.addAttribute("idError", "ユーザーIDが存在しません。");
-				return "login"; // login.htmlに戻る
+				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
+				return "redirect:/login";
 			} else {
 				// DBのカラム情報を取得
 				int userId = loginUser.get(0).getTEACHER_ID(); 
@@ -83,20 +87,21 @@ public class LoginController {
 					model.addAttribute("userId", userId);
 					model.addAttribute("userName", userName);
 					model.addAttribute("selectJob", loginForm.getSelectJob());
+
 					return "menu"; // menu.htmlを表示
 				} else {
 					// パスワードが違った場合
-					model.addAttribute("passError", "パスワードが違います。");
-					return "login"; // login.htmlに戻る
+					redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+					return "redirect:/login";
 				}
 			}
 		} else {
-			// DBからデータ取得       	
+			// DBからデータ取得
 			List<Student> loginUser = studentService.loginUser(loginForm.getUserId());
 
 			if (loginUser.isEmpty()) {
-				model.addAttribute("idError", "ユーザーIDが存在しません。");
-				return "login"; // login.htmlに戻る
+				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
+				return "redirect:/login";
 			} else {
 				// DBのカラム情報を取得
 				int userId = loginUser.get(0).getSTUDENT_ID(); 
@@ -109,11 +114,18 @@ public class LoginController {
 					model.addAttribute("userId", userId);
 					model.addAttribute("userName", userName);
 					model.addAttribute("selectJob", loginForm.getSelectJob());
-						return "menu"; // menu.htmlを表示
+
+
+					loginFormData.setUserId(userId);
+					model.addAttribute(loginFormData);
+					System.out.println(model);
+
+
+					return "menu"; // menu.htmlを表示
 				} else {
 					// パスワードが違った場合
-					model.addAttribute("passError", "パスワードが違います。");
-					return "login"; // login.htmlに戻る
+					redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+					return "redirect:/login";
 				}
 			}
 		}

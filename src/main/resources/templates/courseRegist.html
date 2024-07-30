@@ -12,10 +12,11 @@
 			<form th:action="@{/CourseRegist}" method="post">
 				<div>
 					<p>授業ID：
-						<input type="text" name="classId" id="classId" />
+						<input type="text" name="addClassID" id="addClassID" />
 					</p>
 				</div>
 				<div>
+					<input type="text" name="hiddenStudentID" th:value="${userId}" />
 					<input type="submit" name="regist" id="regist" value="登録" />
 					<input type="submit" name="back" id="back" value="戻る" />
 				</div>

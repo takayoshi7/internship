@@ -27,9 +27,19 @@ public class CourseRegistService {
      * 
      * @param userId ユーザーID
      * @param classId 授業ID
-     * @return 削除された後の履修登録レコード
      */
     public void deleteClass(Integer userId, Integer classId) {
         courseRegistRepository.deleteClass(userId, classId);
     }
+
+
+    /**
+     * 学生が未登録の授業を追加する。
+     * 
+     * @param userId ユーザーID
+     * @param classId 授業ID
+     */
+    // public void addClass(Integer userId, Integer classId) {
+    //     courseRegistRepository.addClass(userId, classId);
+    // }
 }
