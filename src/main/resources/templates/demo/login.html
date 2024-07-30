@@ -6,15 +6,15 @@
 	</head>
 	<body>
 		<h1>ログイン</h1>
-		<!--コントローラーのMappingのValueがmenuのイベントにpost送信-->
-		<form th:action="@{/menu}" th:object="${loginForm}" method="post">
+		<!--コントローラーのPostMappingがmenuのメソッドに-->
+		<form th:action="@{/menu}" method="post">
 			<div>
 				<input type="radio" name="selectJob" th:value="Teacher" th:text="教員" />
 				<input type="radio" name="selectJob" th:value="Student" th:text="学生" th:checked=true />
 			</div>
 			<p>
 				<label for="userId">ユーザーID：</label>
-				<input type="text" name="userId" id="userId" />
+				<input type="text" name="userId" id="userId" th:value="${userId}" />
 				<label style="color: red;" th:text="${idError}"></label>
 			</p>
 			<p>
@@ -23,11 +23,11 @@
 				<label style="color: red;" th:text="${passError}"></label>
 			</p>
 			<p>
-				<!--Mappingのparamsがloginのイベントに-->
 				<input type="submit" name="login" value="ログイン" />
-				<!--Mappingのparamsがendのイベントに-->
-				<input type="submit" name="end" value="終了" />
 			</p>
+		</form>
+		<form th:action="@{/end}">
+			<input type="submit" name="end" value="終了" />
 		</form>
 	</body>
 </html>

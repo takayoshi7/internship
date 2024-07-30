@@ -29,24 +29,4 @@ public class Teacher implements Serializable {
     // TEACHER_PASSカラム  
     @Column(name = "TEACHER_PASS")
     private String TEACHER_PASS;
-
-    //Dataアノテーションを使うとgettterとsetterの定義をしなくてもよい
-//    public Integer getId() {
-//        return TEACHER_ID;
-//    }
-//    public void setId(Integer TEACHER_ID) {
-//        this.TEACHER_ID = TEACHER_ID;
-//    }
-//    public String getName() {
-//        return TEACHER_NAME;
-//    }
-//    public void setName(String TEACHER_NAME) {
-//        this.TEACHER_NAME = TEACHER_NAME;
-//    }
-//    public String getPassword() {
-//        return TEACHER_PASS;
-//    }
-//    public void setPassword(String TEACHER_PASS) {
-//        this.TEACHER_PASS = TEACHER_PASS;
-//    }
 }

@@ -5,8 +5,6 @@ import java.io.Serializable;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 
@@ -19,10 +17,9 @@ public class CourseRegist implements Serializable {
     // STUDENT_IDカラム
     @Id
     @Column(name = "STUDENT_ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer STUDENT_ID;
 
-    // CLASS_IDカラム   
+    // CLASS_IDカラム
     @Column(name = "CLASS_ID")
     private Integer CLASS_ID;
 }

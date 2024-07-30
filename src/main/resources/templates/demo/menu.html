@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>メニュー画面</title>
+	</head>
+	<body>
+		<div>
+			<!--modelに追加した値を参照して表示させる-->
+			<h2>ようこそ<span th:text="${userName}"></span>さん</h2>
+		</div>
+		<div>
+			<p>教員</p>
+			<!--コントローラーのPostMappingがclassのメソッドに-->
+			<table>
+				<tr>
+					<form th:action="@{/class}" method="post">
+						<input type="submit" name="class" value="授業" th:disabled="*{selectJob != 'Teacher'}" />
+					</form>
+				</tr>
+			</table>
+		</div>
+		<div>
+			<p>学生</p>
+			<!--コントローラーのPostMappingがcourseRegistのメソッドに-->
+			<table>
+				<tr>
+					<form th:action="@{/courseRegist}">
+						<input type="submit" name="courseRegist" value="履修登録" th:disabled="*{selectJob != 'Student'}" />
+					</form>
+					<form th:action="@{/timeTable}">
+						<input type="submit" name="timeTable" value="時間割表" th:disabled="*{selectJob != 'Student'}" />
+					</form>
+				</tr>
+			</table>
+		</div>
+		<br>
+		<div>
+			<form th:action="@{/logout}">
+				<input type="submit" name="logout" value="終了"/>
+			</form>
+		</div>
+	</body>
+</html>

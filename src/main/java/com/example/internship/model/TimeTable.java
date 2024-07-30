@@ -15,12 +15,12 @@ public class TimeTable implements Serializable {
     @Id
     private Integer CLASS_ID;
 
-    // TEACHER_NAMEカラム    
+    // TEACHER_NAMEカラム
     private String TEACHER_NAME;
 
-    // CLASS_NAMEカラム   
+    // CLASS_NAMEカラム
     private String CLASS_NAME;
 
-    // CLASS_TIMEカラム  
+    // CLASS_TIMEカラム
     private String CLASS_TIME;
 }

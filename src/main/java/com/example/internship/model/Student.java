@@ -13,7 +13,7 @@ import jakarta.persistence.Table;
 import lombok.Data;
 
 @Entity
-@Data
+@Data // Dataアノテーションを使うとgettterとsetterの定義をしなくてもよい
 @Table(name = "STUDENT")
 public class Student implements Serializable {
     // STUDENT_IDカラム
@@ -29,24 +29,4 @@ public class Student implements Serializable {
     // STUDENT_PASSカラム  
     @Column(name = "STUDENT_PASS")
     private String STUDENT_PASS;
-    
-    //Dataアノテーションを使うとgettterとsetterの定義をしなくてもよい
-//    public Integer getId() {
-//        return STUDENT_ID;
-//    }
-//    public void setId(Integer STUDENT_ID) {
-//        this.STUDENT_ID = STUDENT_ID;
-//    }
-//    public String getName() {
-//        return STUDENT_NAME;
-//    }
-//    public void setName(String STUDENT_NAME) {
-//        this.STUDENT_NAME = STUDENT_NAME;
-//    }
-//    public String getPassword() {
-//        return STUDENT_PASS;
-//    }
-//    public void setPassword(String STUDENT_PASS) {
-//        this.STUDENT_PASS = STUDENT_PASS;
-//    }
 }

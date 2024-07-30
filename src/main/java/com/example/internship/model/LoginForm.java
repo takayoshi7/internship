@@ -26,4 +26,6 @@ public class LoginForm implements Serializable {
 
 	@NotBlank
 	private String password;
+
+	private String name;
 }
