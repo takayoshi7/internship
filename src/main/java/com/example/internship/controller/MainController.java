@@ -39,9 +39,17 @@ public class MainController {
 		return "demo/menu";
 	}
 
+	// 授業画面
+	@GetMapping("/class")
+	public String dispClass(Model model) {
+		// DBから登録済みの授業データ取得
+		List<TimeTable> getClassData = timeTableService.getClass(loginForm.getUserId());
 
+		// 授業データセット
+		model.addAttribute("classData", getClassData);
 
-
+		return "demo/class";
+	}
 
 	// 履修登録画面
 	@GetMapping("/courseRegist")

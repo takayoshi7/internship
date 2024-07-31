@@ -11,10 +11,9 @@
 		</div>
 		<div>
 			<p>教員</p>
-			<!--コントローラーのPostMappingがclassのメソッドに-->
 			<table>
 				<tr>
-					<form th:action="@{/class}" method="post">
+					<form th:action="@{/class}">
 						<input type="submit" name="class" value="授業" th:disabled="*{selectJob != 'Teacher'}" />
 					</form>
 				</tr>
@@ -22,7 +21,6 @@
 		</div>
 		<div>
 			<p>学生</p>
-			<!--コントローラーのPostMappingがcourseRegistのメソッドに-->
 			<table>
 				<tr>
 					<form th:action="@{/courseRegist}">

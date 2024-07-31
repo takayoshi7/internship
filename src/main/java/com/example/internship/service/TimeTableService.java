@@ -24,14 +24,14 @@ public class TimeTableService {
     }
 
     /**
-     * 学生が履修登録に登録済みの授業を削除する。
+     * 教員ID指定で登録済みの授業を取得する
      * 
      * @param userId ユーザーID
      * @param classId 授業ID
-     * @return 削除された後の履修登録レコード
+     * @return 登録済みの授業レコード
      */
-    public void deleteClass(Integer userId, Integer classId) {
-        timeTableRepository.deleteClass(userId, classId);
+    public List<TimeTable> getClass(Integer teacherId) {
+        return timeTableRepository.getClass(teacherId);
     }
 
     /**
@@ -39,6 +39,7 @@ public class TimeTableService {
      * 
      * @param studentID 学生ID
      * @return 時間割表レコード
+     * @return 未登録の授業レコード
      */
     public List<TimeTable> getNotClass(Integer studentID) {
         return timeTableRepository.getNotClass(studentID);

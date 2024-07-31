@@ -28,10 +28,10 @@ public interface TimeTableRepository extends JpaRepository<TimeTable, Integer> {
 			"ORDER BY CLASS.CLASS_ID ASC ", nativeQuery = true)
 		List<TimeTable> getNotClass(@Param("studentID") Integer studentID);
 
-	@Modifying
-	@Query(value = "DELETE FROM COURSE_REGIST " +
-		"WHERE STUDENT_ID = :studentID " +
-		"AND CLASS_ID = :classID ", nativeQuery = true)
-		void deleteClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
-
+	// ログインユーザーが登録済みの授業データ
+	@Query(value = "SELECT CLASS.CLASS_ID, TEACHER_NAME, CLASS_NAME, CLASS_TIME FROM CLASS " +
+			"LEFT JOIN TEACHER ON CLASS.TEACHER_ID = TEACHER.TEACHER_ID " +
+			"WHERE CLASS.TEACHER_ID = :teacherID " +
+			"ORDER BY CLASS.CLASS_ID ASC ", nativeQuery = true)
+		List<TimeTable> getClass(@Param("teacherID") Integer teacherID);
 }

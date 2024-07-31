@@ -32,7 +32,6 @@ public class CourseRegistService {
         courseRegistRepository.deleteClass(userId, classId);
     }
 
-
     /**
      * 学生が未登録の授業を追加する。
      * 

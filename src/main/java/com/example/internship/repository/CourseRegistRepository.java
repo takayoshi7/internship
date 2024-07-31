@@ -18,14 +18,12 @@ import jakarta.transaction.Transactional;
 @Transactional
 @Repository
 public interface CourseRegistRepository extends JpaRepository<CourseRegist, Integer> {
-
 	// 自分が登録済みの授業を削除する
 	@Modifying
 	@Query(value = "DELETE FROM COURSE_REGIST " +
 			"WHERE STUDENT_ID = :studentID " +
 			"AND CLASS_ID = :classID", nativeQuery = true)
 		void deleteClass(@Param("studentID") Integer userId, @Param("classID") Integer classId);
-
 
 	// 自分が未登録の授業を追加する
 	@Modifying

@@ -37,6 +37,12 @@ public class LoginController {
 	@PostMapping("/menu")
 	// login画面からフォーム送信されたとき、loginFormで値を取得
 	public String checkLogin(@RequestParam("selectJob") String selectJob, @RequestParam("userId") int loginId, @RequestParam("password") String password, Model model, RedirectAttributes redirectAttributes) {
+		// セッションに値を保存
+		loginForm.setSelectJob(selectJob);
+		loginForm.setUserId(loginId);
+		loginForm.setPassword(password);
+		
+		
 		// 入力チェック
 		// if (bindingResult.hasErrors()) {
 		// 	if (bindingResult.hasFieldErrors("userId")) {
@@ -64,33 +70,35 @@ public class LoginController {
 
 		// 職業による分岐処理
 		if (selectJob.equals("Teacher")) {
+			// 教員
 			// DBからデータ取得
-			// List<Teacher> loginUser = teacherService.loginUser(loginId);
+			List<Teacher> loginUser = teacherService.loginUser(loginId);
 
-			// if (loginUser.isEmpty()) {
-			// 	redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
-			// 	return "redirect:/login";
-			// } else {
-			// 	// DBのカラム情報を取得
-			// 	int userId = loginUser.get(0).getTEACHER_ID(); 
-			// 	String userName = loginUser.get(0).getTEACHER_NAME();
-			// 	String userPass = loginUser.get(0).getTEACHER_PASS();
+			// ユーザーIDが存在するか
+			if (loginUser.isEmpty()) {
+				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
 
-			// 	// パスワードが合致するか
-			// 	if (hashPass.equals(userPass)) {
-			// 		// Modelオブジェクトのmodelに値を追加することで、menu画面で値を参照させられる
-			// 		model.addAttribute("userId", userId);
-			// 		model.addAttribute("userName", userName);
-			// 		model.addAttribute("selectJob", selectJob);
+				return "redirect:/login";
+			} else {
+				// DBのカラム情報を取得
+				String userName = loginUser.get(0).getTEACHER_NAME();
+				String userPass = loginUser.get(0).getTEACHER_PASS();
 
-			// 		return "menu"; // menu.htmlを表示
-			// 	} else {
-			// 		// パスワードが違った場合
-			// 		redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
-			 		return "redirect:/login";
-			// 	}
-			// }
+				// パスワードが合致するか
+				if (hashPass.equals(userPass)) {
+					// セッションにログインユーザー名を保存
+					loginForm.setName(userName);
+
+					return "redirect:/menu";
+				} else {
+					// パスワードが違った場合はエラーメッセージをセットし、ログイン画面に戻る
+					redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+
+					return "redirect:/login";
+				}
+			}
 		} else {
+			// 学生
 			// DBからデータ取得
 			List<Student> loginUser = studentService.loginUser(loginId);
 
@@ -99,23 +107,15 @@ public class LoginController {
 				// ユーザーIDが存在しなければエラーメッセージをセットし、ログイン画面に戻る
 				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
 				
-				// セッションにセット
-				loginForm.setUserId(loginId);
-				loginForm.setPassword(password);
-
 				return "redirect:/login";
 			} else {
 				// DBのカラム情報を取得
-				int userId = loginUser.get(0).getSTUDENT_ID(); 
 				String userName = loginUser.get(0).getSTUDENT_NAME();
 				String userPass = loginUser.get(0).getSTUDENT_PASS();
 
 				// パスワードが合致するか
 				if (hashPass.equals(userPass)) {
-					// セッションに値を保存
-					loginForm.setSelectJob(selectJob);
-					loginForm.setUserId(userId);
-					loginForm.setPassword(password);
+					// セッションにログインユーザー名を保存
 					loginForm.setName(userName);
 
 					return "redirect:/menu";
