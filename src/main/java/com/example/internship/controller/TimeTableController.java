@@ -11,16 +11,16 @@ import com.example.internship.service.CourseRegistService;
 
 @Controller
 public class TimeTableController {
-    @Autowired
+	@Autowired
 	private LoginForm loginForm;
-    @Autowired
+	@Autowired
 	private CourseRegistService courseRegistService;
 
 	// 時間割表から1レコード削除
 	@PostMapping("delete")
 	public String delTimeTable(@RequestParam("classId") String classId, Model model) {
-        int userID = loginForm.getUserId();
-        int classID = Integer.parseInt(classId);
+		int userID = loginForm.getUserId();
+		int classID = Integer.parseInt(classId);
 
 		// 選択した授業IDを履修登録から削除
 		courseRegistService.deleteClass(userID, classID);

@@ -2,40 +2,58 @@
 <html xmlns:th="http://www.thymeleaf.org">
 	<head>
 		<meta charset="UTF-8">
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.4.2/css/all.css" integrity="sha384-/rXc/GQVaYpyDdyxK+ecHPVYJSN9bmVFBvjA/9eOB+pb3F2w2N6fc5qB9Ew5yIns" crossorigin="anonymous">
+		<link rel="stylesheet" th:href="@{/css/style.css}">
+
 		<title>メニュー画面</title>
 	</head>
 	<body>
 		<div>
 			<!--modelに追加した値を参照して表示させる-->
-			<h2>ようこそ<span th:text="${userName}"></span>さん</h2>
+			<h2 class="title">ようこそ<span th:text="${userName}"></span>さん</h2>
 		</div>
-		<div>
-			<p>教員</p>
-			<table>
-				<tr>
-					<form th:action="@{/class}">
-						<input type="submit" name="class" value="授業" th:disabled="*{selectJob != 'Teacher'}" />
-					</form>
+		<table class="menu">
+			<thead>
+				<tr class="teacher">
+					<th colspan="2">教員</th>
 				</tr>
-			</table>
-		</div>
-		<div>
-			<p>学生</p>
-			<table>
+			</thead>
+			<tbody>
 				<tr>
-					<form th:action="@{/courseRegist}">
-						<input type="submit" name="courseRegist" value="履修登録" th:disabled="*{selectJob != 'Student'}" />
-					</form>
-					<form th:action="@{/timeTable}">
-						<input type="submit" name="timeTable" value="時間割表" th:disabled="*{selectJob != 'Student'}" />
-					</form>
+					<td>
+						<form th:action="@{/class}">
+							<input type="submit" name="class" value="授業" th:classappend="${selectJob =='Teacher' ? 'match' : 'not-match'}" th:disabled="*{selectJob != 'Teacher'}" />
+						</form>
+					</td>
+					<td></td>
 				</tr>
-			</table>
-		</div>
-		<br>
+			</tbody>
+		</table>
+		<table class="menu">
+			<thead>
+				<tr class="student">
+					<th colspan="2">学生</th>
+				</tr>
+			</thead>
+			<tbody>
+				<tr>
+					<td>
+						<form th:action="@{/courseRegist}">
+							<input type="submit" name="courseRegist" value="履修登録" th:classappend="${selectJob =='Student' ? 'match' : 'not-match'}" th:disabled="*{selectJob != 'Student'}" />
+						</form>
+					</td>
+					<td>
+						<form th:action="@{/timeTable}">
+							<input type="submit" name="timeTable" value="時間割表" th:classappend="${selectJob =='Student' ? 'match' : 'not-match'}" th:disabled="*{selectJob != 'Student'}" />
+						</form>
+					</td>
+				</tr>
+			</tbody>
+		</table>
 		<div>
 			<form th:action="@{/logout}">
-				<input type="submit" name="logout" value="終了"/>
+				<input type="submit" class="logout" name="logout" value="終了"/>
 			</form>
 		</div>
 	</body>

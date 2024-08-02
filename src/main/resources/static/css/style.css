@@ -1,0 +1,292 @@
+.title {
+    text-align: center;
+    font: bold;
+    margin-top: 10px;
+}
+
+body {
+    text-align: center;
+}
+
+/* login.html */
+.select-radio {
+    font-size: 22px;
+    margin-top: 40px;
+}
+
+.select-radio .radio-s {
+    margin-left: 50px;
+}
+
+.input-userid {
+    margin-top: 20px;
+}
+
+.input-userid label {
+    font-size: 20px;
+}
+
+.input-password {
+    margin-top: 20px;
+}
+
+.input-password label {
+    font-size: 20px;
+}
+
+.flex-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.flex-btn input {
+    height: 40px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 20%; /* 角丸       */
+    font-size: 14pt;    /* 文字サイズ */
+    text-align: center; /* 文字位置   */
+    cursor: pointer;    /* カーソル   */
+    padding: 6px 6px;   /* 余白       */
+    color: #ffffff;   /* 文字色     */
+    line-height: 1em;   /* 1行の高さ  */
+    transition: .3s;    /* なめらか変化 */
+    box-shadow: 3px 3px 3px #666666; /* 影の設定 */
+}
+
+.flex-btn .login-btn {
+    background: #6666ff;       /* 背景色     */
+    border: 2px solid #6666ff; /* 枠の指定 */
+}
+
+.flex-btn .login-btn:hover {
+    box-shadow: none;      /* カーソル時の影消去 */
+    color: #6666ff;      /* 背景色     */
+    background: #ffffff; /* 文字色     */
+}
+
+.flex-btn .end-btn {
+    margin-left: 30px;
+    background: #f08080;
+    border: 2px solid #f08080;
+}
+
+.flex-btn .end-btn:hover {
+    box-shadow: none;
+    color: #f08080;
+    background: #ffffff;
+}
+
+/* menu.html */
+.menu {
+    margin: auto;
+    margin-top: 40px;
+    width: 300px;
+}
+
+.menu thead {
+    text-align: left;
+    font-size: 22px;
+}
+
+.menu tbody {
+    text-align: left;
+}
+
+.menu td {
+    width: 150px;
+    text-align: center;
+}
+
+.menu tbody input {
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 20%;
+    font-size: 14pt;
+    text-align: center;
+    padding: 6px 6px;
+    line-height: 1em;
+    transition: .3s;
+}
+
+.menu .match {
+    color: #ffffff !important;
+    background: #6666ff !important;
+    border: 2px solid #6666ff !important;
+    box-shadow: 3px 3px 3px #666666 !important;
+    cursor: pointer !important;
+}
+
+.menu .match:hover {
+    box-shadow: none !important;
+    color: #6666ff !important;
+    background: #ffffff !important;
+}
+
+.menu .not-match {
+    box-shadow: none !important;
+    color: #000000 !important;
+    background: #d3d3d3 !important;
+    border: 2px solid #d3d3d3 !important;
+    cursor: default !important;
+}
+
+.logout {
+    margin-top: 30px;
+    height: 40px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 20%;
+    font-size: 14pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 6px 6px;
+    background: #f08080;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    box-shadow: 3px 3px 3px #666666;
+    border: 2px solid #f08080;
+}
+
+.logout:hover {
+    box-shadow: none;
+    color: #f08080;
+    background: #ffffff;
+}
+
+/* class.html */
+.input-classid {
+    font-size: 22px;
+    margin-top: 40px;
+}
+
+.input-class-name {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.input-class-time {
+    font-size: 22px;
+    margin-top: 15px;
+}
+
+.timetable {
+    margin: auto;
+    margin-top: 40px;
+    width: 600px;
+    font-size: 18px;
+}
+
+.timetable .class-id {
+    width: 80px;
+}
+
+.timetable .teacher-name {
+    width: 150px;
+}
+
+.timetable .class-name {
+    width: 270px;
+}
+
+.timetable .class-time {
+    width: 100px;
+}
+
+.flex-btn .teacher-regist-btn {
+    background: #6666ff;
+    border: 2px solid #6666ff;
+}
+
+.flex-btn .teacher-regist-btn:hover {
+    box-shadow: none;
+    color: #6666ff;
+    background: #ffffff;
+}
+
+.flex-btn .teacher-update-btn {
+    margin-left: 30px;
+    background: #6666ff;
+    border: 2px solid #6666ff;
+}
+
+.flex-btn .teacher-update-btn:hover {
+    box-shadow: none;
+    color: #6666ff;
+    background: #ffffff;
+}
+
+.flex-btn .teacher-delete-btn {
+    margin-left: 30px;
+    background: #6666ff;
+    border: 2px solid #6666ff;
+}
+
+.flex-btn .teacher-delete-btn:hover {
+    box-shadow: none;
+    color: #6666ff;
+    background: #ffffff;
+}
+
+.teacher-back-btn {
+    margin-top: 20px;
+    height: 40px;
+    width: 100px;
+    display: inline-block;
+    border-radius: 20%;
+    font-size: 14pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 6px 6px;
+    background: #f08080;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    box-shadow: 3px 3px 3px #666666;
+    border: 2px solid #f08080;
+}
+
+.teacher-back-btn:hover {
+    box-shadow: none;
+    color: #f08080;
+    background: #ffffff;
+}
+
+/* courseRegist.html */
+.flex-btn .regist-btn {
+    background: #6666ff;
+    border: 2px solid #6666ff;
+}
+
+.flex-btn .regist-btn:hover {
+    box-shadow: none;
+    color: #6666ff;
+    background: #ffffff;
+}
+
+.flex-btn .back-btn {
+    margin-left: 30px;
+    background: #f08080;
+    border: 2px solid #f08080;
+}
+
+.flex-btn .back-btn:hover {
+    box-shadow: none;
+    color: #f08080;
+    background: #ffffff;
+}
+
+/* timeTable.html */
+.flex-btn .delete-btn {
+    background: #6666ff;
+    border: 2px solid #6666ff;
+}
+
+.flex-btn .delete-btn:hover {
+    box-shadow: none;
+    color: #6666ff;
+    background: #ffffff;
+}
