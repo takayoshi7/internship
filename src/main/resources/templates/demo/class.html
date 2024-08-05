@@ -11,21 +11,35 @@
 	<body>
 		<h2 class="title">授業</h2>
 		<form th:action="@{/teacherClass}" method="post">
-			<p class="input-classid">
+			<div class="input-classid">
 				<label for="classId">授業ID：</label>
-				<input type="text" name="classId" id="classId" />
-				<label style="color: red;" th:text="${classIdError}"></label>
-			</p>
-			<p class="input-class-name">
+				<select class="comboBox" name="classId">
+					<option
+						th:each="item : ${comboBox}"
+						th:value="${item}"
+						th:text="${item}">
+					</option>
+				</select>
+			</div>
+			<div class="errorArea">
+				<label class="errorMsg" th:text="${classidError}"></label>
+			</div>
+			<div class="input-class-name">
 				<label for="className">授業名：</label>
 				<input type="text" name="className" id="className" />
-				<label style="color: red;" th:text="${classNameError}"></label>
-			</p>
-			<p class="input-class-time">
+			</div>
+			<div class="errorArea">
+				<label class="errorMsg" th:text="${classNameError}"></label>
+			</div>
+			<div class="input-class-time">
 				<label for="classTime">時　間：</label>
-				<input type="text" name="classTime" id="classTime" />
-				<label style="color: red;" th:text="${classTimeError}"></label>
-			</p>
+				<input type="time" name="fromClassTime" id="fromClassTime" value="09:00" required />
+				<label>～</label>
+				<input type="time" name="toClassTime" id="toClassTime" value="12:00" required />
+			</div>
+			<div class="errorArea">
+				<label class="errorMsg" th:text="${classTimeError}"></label>
+			</div>
 			<div class="flex-btn">
 				<input type="submit" class="teacher-regist-btn" name="teacherRegist" id="teacherRegist" value="登録" />
 				<input type="submit" class="teacher-update-btn" name="teacherUpdate" id="teacherUpdate" value="更新" />

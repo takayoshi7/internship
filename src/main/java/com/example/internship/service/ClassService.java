@@ -52,7 +52,7 @@ public class ClassService {
      * @param className 授業名
      * @param classTime 授業時間
      */
-    public void updateTeacherClass(Integer classId, Integer userId, String className, String classTime) {
-        classRepository.updateTeacherClass(classId, userId, className, classTime);
+    public void updateTeacherClass(Integer classId, String className, String classTime) {
+        classRepository.updateTeacherClass(classId, className, classTime);
     }
 }

@@ -1,5 +1,7 @@
 package com.example.internship.controller;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -48,6 +50,22 @@ public class MainController {
 		// 授業データセット
 		model.addAttribute("classData", getClassData);
 
+		// 時間割表データが一つ以上あれば
+		if (getClassData.size() > 0) {
+			// コンボボックス用リスト作成
+			List<String> list = new ArrayList<String>();
+			getClassData.forEach(record -> {
+				list.add(record.getCLASS_ID().toString());
+			});
+			// リストに空欄を追加
+			list.add("");
+			// 昇順ソート
+			Collections.sort(list);
+
+			// コンボボックス用リストセット
+			model.addAttribute("comboBox", list);
+		}
+
 		return "demo/class";
 	}
 
@@ -59,6 +77,20 @@ public class MainController {
 
 		// 時間割表データセット
 		model.addAttribute("notClassData", notClassData);
+
+		// 時間割表データが一つ以上あれば
+		if (notClassData.size() > 0) {
+			// コンボボックス用リスト作成
+			List<Integer> list = new ArrayList<Integer>();
+			notClassData.forEach(record -> {
+				list.add(record.getCLASS_ID());
+			});
+			// 昇順ソート
+			Collections.sort(list);
+
+			// コンボボックス用リストセット
+			model.addAttribute("comboBox", list);
+		}
 
 		return "demo/courseRegist";
 	}
@@ -74,6 +106,20 @@ public class MainController {
 
 		// 時間割表データセット
 		model.addAttribute("timeTable", timeTable);
+
+		// 時間割表データが一つ以上あれば
+		if (timeTable.size() > 0) {
+			// コンボボックス用リスト作成
+			List<Integer> list = new ArrayList<Integer>();
+			timeTable.forEach(record -> {
+				list.add(record.getCLASS_ID());
+			});
+			// 昇順ソート
+			Collections.sort(list);
+
+			// コンボボックス用リストセット
+			model.addAttribute("comboBox", list);
+		}
 
 		return "demo/timeTable";
 	}
@@ -93,7 +139,7 @@ public class MainController {
 	// 	// 終了　ログイン画面へ
 	@GetMapping("logout")
 	public String logout() {
-		// セッション削除
+		// セッション削除???
 
 
 		return "demo/login";

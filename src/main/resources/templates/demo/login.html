@@ -17,16 +17,20 @@
 				<input type="radio" class="radio-t" name="selectJob" th:value="Teacher" th:text="教員" />
 				<input type="radio" class="radio-s" name="selectJob" th:value="Student" th:text="学生" th:checked=true />
 			</div>
-			<p class="input-userid">
+			<div class="input-userid">
 				<label for="userId">ユーザーID：</label>
 				<input type="text" name="userId" id="userId" th:value="${userId}" />
-				<label style="color: red;" th:text="${idError}"></label>
-			</p>
-			<p class="input-password">
+			</div>
+			<div class="errorArea">
+				<label class="errorMsg" th:text="${idError}"></label>
+			</div>
+			<div class="input-password">
 				<label for="password">パスワード：</label>
 				<input type="text" name="password" id="password" th:value="${password}" />
-				<label style="color: red;" th:text="${passError}"></label>
-			</p>
+			</div>
+			<div class="errorArea">
+				<label class="errorMsg" th:text="${passError}"></label>
+			</div>
 			<div class="flex-btn">
 				<input type="submit" class="login-btn" name="login" value="ログイン" />
 		</form>

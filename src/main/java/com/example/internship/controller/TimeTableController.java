@@ -5,6 +5,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.example.internship.entity.LoginForm;
 import com.example.internship.service.CourseRegistService;
@@ -18,7 +19,7 @@ public class TimeTableController {
 
 	// 時間割表から1レコード削除
 	@PostMapping("delete")
-	public String delTimeTable(@RequestParam("classId") String classId, Model model) {
+	public String delTimeTable(@RequestParam("classId") String classId, Model model, RedirectAttributes redirectAttributes) {
 		int userID = loginForm.getUserId();
 		int classID = Integer.parseInt(classId);
 

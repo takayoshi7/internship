@@ -27,14 +27,24 @@ body {
 }
 
 .input-password {
-    margin-top: 20px;
+    /* margin-top: 20px; */
 }
 
 .input-password label {
     font-size: 20px;
 }
 
+.errorArea {
+    height: 30px;
+}
+
+.errorMsg {
+    color: #ff0000;
+    font-size: 12px;
+}
+
 .flex-btn {
+    margin-top: 30px;
     display: flex;
     justify-content: center;
 }
@@ -134,7 +144,7 @@ body {
 }
 
 .logout {
-    margin-top: 30px;
+    margin-top: 70px;
     height: 40px;
     width: 100px;
     display: inline-block;
@@ -158,6 +168,10 @@ body {
 }
 
 /* class.html */
+.comboBox {
+    width: 257px;
+}
+
 .input-classid {
     font-size: 22px;
     margin-top: 40px;
@@ -165,12 +179,16 @@ body {
 
 .input-class-name {
     font-size: 22px;
-    margin-top: 15px;
+    margin-top: 10px;
 }
 
 .input-class-time {
     font-size: 22px;
-    margin-top: 15px;
+    margin-top: 10px;
+}
+
+.input-class-time input {
+    width: 113px;
 }
 
 .timetable {
@@ -268,7 +286,7 @@ body {
 }
 
 .flex-btn .back-btn {
-    margin-left: 30px;
+    margin-left: 60px;
     background: #f08080;
     border: 2px solid #f08080;
 }

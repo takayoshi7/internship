@@ -11,11 +11,16 @@
 	<body>
 		<h2 class="title">履修登録</h2>
 		<form th:action="@{/insert}" method="post">
-			<p class="input-classid">
+			<div class="input-classid">
 				<label for="classId">授業ID：</label>
-				<input type="text" name="classId" id="classId" />
-				<label style="color: red;" th:text="${classIdError}"></label>
-			</p>
+				<select class="comboBox" name="addClassID">
+					<option
+						th:each="item : ${comboBox}"
+						th:value="${item}"
+						th:text="${item}">
+					</option>
+				</select>
+			</div>
 			<div class="flex-btn">
 				<input type="submit" class="regist-btn" name="regist" id="regist" value="登録" />
 		</form>

@@ -35,7 +35,7 @@ public class LoginController {
 		boolean result = true;
 		// 入力チェック
 		if (true) {
-			if (loginId.isEmpty() || loginId.isBlank()) {
+			if (loginId.isBlank()) {
 				// ユーザーIDが空文字、もしくは空白であればエラーメッセージセット
 				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが入力されていません。");
 				result =false;
@@ -56,7 +56,7 @@ public class LoginController {
 				}
 			}
 
-			if (password.isEmpty() || password.isBlank()) {
+			if (password.isBlank()) {
 				// パスワードが空文字、もしくは空白であればエラーメッセージセット
 				redirectAttributes.addFlashAttribute("passError", "パスワードが入力されていません。");
 				result =false;
