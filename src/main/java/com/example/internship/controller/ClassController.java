@@ -3,7 +3,6 @@ package com.example.internship.controller;
 import java.time.LocalTime;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -20,23 +19,38 @@ public class ClassController {
 	private ClassService classService;
 
 	// 授業から1レコード削除
-	@PostMapping(value = "teacherClass", params = "teacherDelete")
-	public String delTeacherClass(@RequestParam("classId") String classId, Model model) {
-		int userID = loginForm.getUserId();
-		int classID = Integer.parseInt(classId);
+	@PostMapping("class-delete")
+	public String delTeacherClass(@RequestParam("classId") String classId, Model model, RedirectAttributes redirectAttributes) {
+		// 入力チェック変数
+		boolean result = true;
 
-		// 選択した授業IDを授業から削除
-		classService.deleteTeacherClass(userID, classID);
+		// 授業ID入力チェック
+		if (classId.isEmpty()) {
+			redirectAttributes.addFlashAttribute("classidError", "授業IDが選択されておりません。");
+			result = false;
+		}
+		
+		// エラーが無ければ削除処理
+		if (result) {
+			int userID = loginForm.getUserId();
+			int classID = Integer.parseInt(classId);
 
+			try {
+				// 選択した授業IDを授業から削除
+				classService.deleteTeacherClass(userID, classID);
+			} catch (Exception e) {
+				System.err.println("データベース操作中にエラーが発生しました: " + e.getMessage());
+			}
+		}
 		return "redirect:/class";
 	}
 
 	// 新しく授業を登録する
-	@PostMapping(value = "teacherClass", params = "teacherRegist")
+	@PostMapping("class-insert")
 	public String addTeacherClass(@RequestParam("className") String className, @RequestParam("fromClassTime") String fromClassTime, @RequestParam("toClassTime") String toClassTime, Model model, RedirectAttributes redirectAttributes) {
 		// 入力チェック変数
 		boolean result = true;
-		
+
 		// 授業名入力チェック
 		if (className.isEmpty() || className.isBlank()) {
 			redirectAttributes.addFlashAttribute("classNameError", "授業名の入力が正しくありません。");
@@ -61,8 +75,8 @@ public class ClassController {
 			try {
 				// 入力された内容で授業を登録
 				classService.insertTeacherClass(userID, className, classTime);
-			} catch (DataIntegrityViolationException e) {
-				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.err.println("データベース操作中にエラーが発生しました: " + e.getMessage());
 			}
 		}
 
@@ -70,7 +84,7 @@ public class ClassController {
 	}
 
 	// 登録済みの授業を更新する
-	@PostMapping(value = "teacherClass", params = "teacherUpdate")
+	@PostMapping("class-update")
 	public String upTeacherClass(@RequestParam("classId") String classId, @RequestParam("className") String className, @RequestParam("fromClassTime") String fromClassTime, @RequestParam("toClassTime") String toClassTime, Model model, RedirectAttributes redirectAttributes) {
 		// 入力チェック変数
 		boolean result = true;
@@ -105,8 +119,8 @@ public class ClassController {
 			try {
 				// 選択した授業を更新する
 				classService.updateTeacherClass(classID, className, classTime);
-			} catch (DataIntegrityViolationException e) {
-				System.out.println(e.getMessage());
+			} catch (Exception e) {
+				System.err.println("データベース操作中にエラーが発生しました: " + e.getMessage());
 			}
 		}
 

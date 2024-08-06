@@ -14,8 +14,8 @@
 		<!--コントローラーのPostMappingがmenuのメソッドに-->
 		<form th:action="@{/menu}" method="post">
 			<div class="select-radio">
-				<input type="radio" class="radio-t" name="selectJob" th:value="Teacher" th:text="教員" />
-				<input type="radio" class="radio-s" name="selectJob" th:value="Student" th:text="学生" th:checked=true />
+				<input type="radio" class="radio-t" name="selectJob" th:value="Teacher" th:text="教員" th:checked="${selectJob == 'Teacher' ? true : false}" />
+				<input type="radio" class="radio-s" name="selectJob" th:value="Student" th:text="学生" th:checked="${selectJob == 'Student' ? true : false}" />
 			</div>
 			<div class="input-userid">
 				<label for="userId">ユーザーID：</label>
@@ -26,7 +26,7 @@
 			</div>
 			<div class="input-password">
 				<label for="password">パスワード：</label>
-				<input type="text" name="password" id="password" th:value="${password}" />
+				<input type="password" name="password" id="password" th:value="${password}" />
 			</div>
 			<div class="errorArea">
 				<label class="errorMsg" th:text="${passError}"></label>

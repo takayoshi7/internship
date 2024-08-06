@@ -98,56 +98,60 @@ public class LoginController {
 		// DBとの照合チェックの検証結果を格納する変数
 		boolean dbResult = true;
 
-		// 職業による分岐処理
-		if (selectJob.equals("Teacher")) {
-			// 教員
-			// DBからデータ取得
-			List<Teacher> loginUser = teacherService.loginUser(userId);
+		try {
+			// 職業による分岐処理
+			if (selectJob.equals("Teacher")) {
+				// 教員
+				// DBからデータ取得
+				List<Teacher> loginUser = teacherService.loginUser(userId);
 
-			// ユーザーIDが存在するか
-			if (loginUser.isEmpty()) {
-				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
-				dbResult =false;
-			} else {
-				// DBのカラム情報を取得
-				String userName = loginUser.get(0).getTEACHER_NAME();
-				String userPass = loginUser.get(0).getTEACHER_PASS();
-
-				// パスワードが合致するか
-				if (hashPass.equals(userPass)) {
-					// セッションにログインユーザー名を保存
-					loginForm.setName(userName);
-				} else {
-					// パスワードが違った場合はエラーメッセージをセットし、ログイン画面に戻る
-					redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+				// ユーザーIDが存在するか
+				if (loginUser.isEmpty()) {
+					redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
 					dbResult =false;
+				} else {
+					// DBのカラム情報を取得
+					String userName = loginUser.get(0).getTEACHER_NAME();
+					String userPass = loginUser.get(0).getTEACHER_PASS();
+
+					// パスワードが合致するか
+					if (hashPass.equals(userPass)) {
+						// セッションにログインユーザー名を保存
+						loginForm.setName(userName);
+					} else {
+						// パスワードが違った場合はエラーメッセージをセットし、ログイン画面に戻る
+						redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+						dbResult =false;
+					}
+				}
+			} else {
+				// 学生
+				// DBからデータ取得
+				List<Student> loginUser = studentService.loginUser(userId);
+
+				// ユーザーIDが存在するか
+				if (loginUser.isEmpty()) {
+					// ユーザーIDが存在しなければエラーメッセージをセットし、ログイン画面に戻る
+					redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
+					dbResult =false;
+				} else {
+					// DBのカラム情報を取得
+					String userName = loginUser.get(0).getSTUDENT_NAME();
+					String userPass = loginUser.get(0).getSTUDENT_PASS();
+
+					// パスワードが合致するか
+					if (hashPass.equals(userPass)) {
+						// セッションにログインユーザー名を保存
+						loginForm.setName(userName);
+					} else {
+						// パスワードが違った場合はエラーメッセージをセットし、ログイン画面に戻る
+						redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
+						dbResult =false;
+					}
 				}
 			}
-		} else {
-			// 学生
-			// DBからデータ取得
-			List<Student> loginUser = studentService.loginUser(userId);
-
-			// ユーザーIDが存在するか
-			if (loginUser.isEmpty()) {
-				// ユーザーIDが存在しなければエラーメッセージをセットし、ログイン画面に戻る
-				redirectAttributes.addFlashAttribute("idError", "ユーザーIDが存在しません。");
-				dbResult =false;
-			} else {
-				// DBのカラム情報を取得
-				String userName = loginUser.get(0).getSTUDENT_NAME();
-				String userPass = loginUser.get(0).getSTUDENT_PASS();
-
-				// パスワードが合致するか
-				if (hashPass.equals(userPass)) {
-					// セッションにログインユーザー名を保存
-					loginForm.setName(userName);
-				} else {
-					// パスワードが違った場合はエラーメッセージをセットし、ログイン画面に戻る
-					redirectAttributes.addFlashAttribute("passError", "パスワードが違います。");
-					dbResult =false;
-				}
-			}
+		} catch (Exception e) {
+			System.err.println("データベース操作中にエラーが発生しました: " + e.getMessage());
 		}
 
 		if (dbResult) {

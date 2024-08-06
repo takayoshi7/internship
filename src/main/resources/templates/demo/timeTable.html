@@ -10,7 +10,7 @@
 	</head>
 	<body>
 		<h2 class="title"><span th:text="${userName}"></span>さんの時間割表</h2>
-		<form th:action="@{/delete}" method="post">
+		<form th:action="@{/dialog}" method="post">
 			<div class="input-classid">
 				<label for="classId">授業ID：</label>
 				<select class="comboBox" name="classId">
@@ -22,7 +22,8 @@
 				</select>
 			</div>
 			<div class="flex-btn">
-				<input type="submit" class="delete-btn" name="delete" id="delete" value="削除" />
+				<input type="hidden" name="from" value="timeTable">
+				<input type="submit" class="delete-btn" name="actionMsg" id="actionMsg" value="削除" />
 		</form>
 			<form th:action="@{/back}">
 				<input type="submit" class="back-btn" name="back" id="back" value="戻る" />

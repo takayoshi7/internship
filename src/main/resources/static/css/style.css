@@ -308,3 +308,46 @@ body {
     color: #6666ff;
     background: #ffffff;
 }
+
+/* dialog.html */
+.check-msg {
+    font-size: 20px;
+}
+
+.dialog-btn {
+    height: 38px;
+    width: 75px;
+    display: inline-block;
+    border-radius: 20%;
+    font-size: 14pt;
+    text-align: center;
+    cursor: pointer;
+    padding: 7px 7px;
+    color: #ffffff;
+    line-height: 1em;
+    transition: .3s;
+    box-shadow: 3px 3px 3px #666666;
+}
+
+.yes-btn {
+    background: #007bff;
+    border: 2px solid #007bff;
+}
+
+.yes-btn:hover {
+    box-shadow: none;
+    color: #007bff;
+    background: #ffffff;
+}
+
+.no-btn {
+    margin-left: 60px;
+    background: #6c757d;
+    border: 2px solid #6c757d;
+}
+
+.no-btn:hover {
+    box-shadow: none;
+    color: #6c757d;
+    background: #ffffff;
+}

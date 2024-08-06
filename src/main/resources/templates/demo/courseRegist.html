@@ -10,10 +10,10 @@
 	</head>
 	<body>
 		<h2 class="title">履修登録</h2>
-		<form th:action="@{/insert}" method="post">
+		<form th:action="@{/dialog}" method="post">
 			<div class="input-classid">
 				<label for="classId">授業ID：</label>
-				<select class="comboBox" name="addClassID">
+				<select class="comboBox" name="classId">
 					<option
 						th:each="item : ${comboBox}"
 						th:value="${item}"
@@ -22,7 +22,8 @@
 				</select>
 			</div>
 			<div class="flex-btn">
-				<input type="submit" class="regist-btn" name="regist" id="regist" value="登録" />
+				<input type="hidden" name="from" value="courseRegist">
+				<input type="submit" class="regist-btn" name="actionMsg" id="actionMsg" value="登録" />
 		</form>
 				<form th:action="@{/back}">
 					<input type="submit" class="back-btn" name="back" id="back" value="戻る" />

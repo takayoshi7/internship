@@ -1,8 +1,6 @@
 // データベースにアクセスするためのリポジトリクラス
 package com.example.internship.repository;
 
-import java.util.List;
-
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -10,8 +8,6 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
 
 import com.example.internship.entity.CourseRegist;
-import com.example.internship.entity.Student;
-import com.example.internship.entity.TimeTable;
 
 import jakarta.transaction.Transactional;
 // @QueryでSELECT以外の直接SQL文を実行する場合は@Transactionalと@Modifyingが必須
